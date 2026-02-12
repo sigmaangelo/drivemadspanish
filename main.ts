@@ -1,4 +1,3 @@
-
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 
 const PASSWORD = "1234";
@@ -33,16 +32,20 @@ serve(async (req) => {
     return new Response("WRONG", { status: 401 });
   }
 
-  /* ===== PROTECT PRIVATE HTML ===== */
-  if (
-    path === "/home.html" ||
-    path === "/gxmes.html" ||
-    path === "/chat.html" ||
-    path === "/disclaimer.html"
-  ) {
-    if (!authenticated) {
-      return new Response("403 Forbidden", { status: 403 });
-    }
+  /* ===== PROTECT PRIVATE ROUTES ===== */
+  const protectedPaths = [
+    "/home.html",
+    "/gxmes.html",
+    "/chat.html",
+    "/disclaimer.html",
+  ];
+
+  const isProtected =
+    protectedPaths.includes(path) ||
+    path.startsWith("/drivemad/");
+
+  if (isProtected && !authenticated) {
+    return new Response("403 Forbidden", { status: 403 });
   }
 
   /* ===== FILE SERVER ===== */
