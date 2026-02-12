@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>HEAVENLY Games 🎮</title>
+<title>Quizlet: Unit 3</title>
 
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:sans-serif; }
@@ -34,18 +34,9 @@ button:hover {
     transform: scale(1.05);
 }
 
-h1 { font-size:2.5rem; color:#00ffc8; text-shadow:0 0 10px #00ffc8; }
+h1 { font-size:3.5rem; color:orange; text-shadow:0 0 10px yellow; }
 
-#searchBar {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(0,255,200,0.3);
-    color:#00ffc8;
-    padding:14px 20px;
-    border-radius:12px;
-    width: min(320px, 85%);
-    margin:20px auto;
-    display:block;
-}
+
 
 .game-grid {
     display:grid;
@@ -55,7 +46,8 @@ h1 { font-size:2.5rem; color:#00ffc8; text-shadow:0 0 10px #00ffc8; }
 }
 
 .game-card {
-    height:200px;
+    height:500px;
+    width:525px;
     background-size:cover;
     background-position:center;
     border-radius:10px;
@@ -131,25 +123,29 @@ h1 { font-size:2.5rem; color:#00ffc8; text-shadow:0 0 10px #00ffc8; }
     width:100%;
     border:none;
 }
+.game-card {
+    grid-column: 1 / -1;
+    margin: 0 auto;
+}
+
 </style>
 </head>
 
 <body>
 
 <div id="anel">
-    <br><br><br>
-    <h1>Heavenly Games 🎮</h1>
+    <br><br>
+    <h1>Spanish Gaming 🎮</h1>
+    <h2>If laggy or bad internet game may have up to a 20-30 second wait.</h2>
+<br><br>
 
-    <input type="text" id="searchBar" placeholder="Search games...">
-
-    <h2 class="section-title">New Games</h2>
     <div class="section-barrier"></div>
 
     <section class="game-grid">
         <a class="game-card"
            data-url="/drivemad/index.html"
-           data-img="https://spacewavesgame.io/data/image/game/space-waves/space-waves.png">
-           <span>Spacewaves</span>
+           data-img="https://codehs.com/uploads/50486d35ba4ed5e7de3f9158e4466a76">
+           <span>Drive Mad</span>
         </a>
     </section>
 </div>
@@ -161,8 +157,11 @@ h1 { font-size:2.5rem; color:#00ffc8; text-shadow:0 0 10px #00ffc8; }
     </div>
     <iframe id="gameFrame"></iframe>
 </div>
+<br>
+<br>
+<br>
 
-<footer>© 2026 Snowy Update — All Rights Reserved</footer>
+<footer>© 2026 Singular Update — All Rights Reserved</footer>
 
 <script>
 initGameScripts();
