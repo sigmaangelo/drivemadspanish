@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>hi</title>
+<style>
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: #0d0d0d;
+  color: white;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+#cloakBtn {
+  padding: 20px;
+  font-size: 1.5em;
+  cursor: pointer;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 12px;
+}
+
+#passwordBox {
+  display: none;
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 12px;
+  width: 300px;
+  text-align: center;
+}
+
+input {
+  width: 90%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #333;
+  color: white;
+}
+
+button.submitBtn {
+  margin-top: 15px;
+  padding: 12px;
+  width: 100%;
+  background: #4caf50;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#msg {
+  margin-top: 10px;
+  color: #ff5252;
+}
+
+iframe {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<button id="cloakBtn">CLOAK</button>
+
+<div id="passwordBox">
+  <h2>Enter Password</h2>
+  <input id="pass" type="password" />
+  <button class="submitBtn" id="enterBtn">Enter</button>
+  <p id="msg"></p>
+</div>
+
+<iframe id="homeFrame"></iframe>
+
+<script>
+const cloakBtn = document.getElementById("cloakBtn");
+const passwordBox = document.getElementById("passwordBox");
+const enterBtn = document.getElementById("enterBtn");
+const frame = document.getElementById("homeFrame");
+const msg = document.getElementById("msg");
+
+/* ===== ENTER FULLSCREEN ===== */
+cloakBtn.onclick = async () => {
+  await document.documentElement.requestFullscreen();
+  cloakBtn.style.display = "none";
+  passwordBox.style.display = "block";
+};
+
+/* ===== PASSWORD → SERVER AUTH ===== */
+enterBtn.onclick = async () => {
+  const pass = document.getElementById("pass").value;
+
+  const res = await fetch("/login", {
+    method: "POST",
+    body: new URLSearchParams({ password: pass }),
+  });
+
+  if (!res.ok) {
+    msg.innerText = "Wrong password";
+    return;
+  }
+
+  passwordBox.style.display = "none";
+  frame.src = "/gxmes.html"; // ← changed here
+  frame.style.display = "block";
+};
+
+/* ===== ESC PANIC ===== */
+;
+</script>
+
+</body>
+</html>
+ 
